@@ -1,0 +1,36 @@
+@charset "ISO-8859-1";
+
+body {
+    background      : url("../images/bg7.jpg") no-repeat center/cover;
+    color           : black;
+}
+
+.form_container {
+	background      : rgb(173, 173, 173, 0.7);
+    padding         : 40px;
+    border          : 2px solid;
+    border-radius   : 5px;
+}
+
+#sub_but {
+    background      : #0E2954;
+    margin-top      : 20px;
+    border-color    : #0E2954;
+}
+
+#sub_but:hover {
+    background      : #02132e;
+}
+
+.but_holder {
+    width           : 100%;
+    margin          : 10px 15px 0 15px; 
+    padding-top     : 10px; 
+    text-align      : right; 
+}
+
+@media screen and (max-width : 1200px) {
+    body {
+         background : url("../images/bg8.jpg") no-repeat center/cover;
+    }
+}	

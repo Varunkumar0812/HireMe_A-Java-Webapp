@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+
+body {
+	background    : #10100a;
+	color         : black;
+}
+    
+.form_container {
+    background    : rgba(255, 255, 255);
+    width         : 600px;
+    margin        : 8vw auto auto auto;
+    padding       : 40px;
+    border        : 2px solid;
+    border-radius : 5px;
+}
+    
+#sub_but {
+    background    : #3a8ccb;
+    color         : black;
+    width         : 85%;
+    margin-right  : 20px;
+    border-color  : #0E2954;
+}
+    
+#sub_but:hover {
+    background    :#02132e;
+    color         : white;
+}
+    
+.but_holder {
+    width         : 100%;
+    margin        : 10px 15px 0 15px;
+    padding-top   : 10px; 
+    text-align    : center;
+}
+
+@media screen and (max-width : 780px) {
+    .form_container {
+        width : 90%;
+    }
+}
