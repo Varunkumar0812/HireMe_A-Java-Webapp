@@ -5,6 +5,7 @@
 <head>
     <title>HireMe - A Job Portal Website</title>
 
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
     <style>
         html {
             scroll-behavior  : smooth;

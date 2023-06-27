@@ -12,6 +12,7 @@
 <meta charset="ISO-8859-1">
 <title>Dashboard - Profile Page</title>
 
+<link rel="icon" type="image/x-icon" href="images/logo.png">
 <link rel="stylesheet" href="styles/Dashboard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">

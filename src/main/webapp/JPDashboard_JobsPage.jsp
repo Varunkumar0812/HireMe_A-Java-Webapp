@@ -11,6 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Dashboard - Jobs page</title>
 
+<link rel="icon" type="image/x-icon" href="images/logo.png">
 <link rel="stylesheet" href="styles/Dashboard.css">
 
 <style>
