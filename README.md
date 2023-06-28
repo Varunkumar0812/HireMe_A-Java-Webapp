@@ -1,27 +1,27 @@
 # HireMe_A-Java-Webapp
 
-A simple Java webapp developed using Java Web Development tools like JSPs and Servlets.
-It is a rather simplistic model of a typical job-seeking website. There are two types of users :
+A simple Java webapp developed using Java Web Development tools like JSPs and Servlets
+It is a rather simplistic model of a typical job-seeking website. There are two types of users:
 
 * Job Seekers
 * Job Providers
 
-The Job Providers can create a job. The Job Seekers can search an d apply for jobs.
+The Job Providers can create a job. Job Seekers can search and apply for jobs.
 The Job Seeker must enter their skills at the time of registration. The Job provider must also select the skills required for a job when creating it.
 The jobs are recommended to the users based on the skills match. If the user's skills and the job's skills match, then they can apply for that job.
 
-If the skills match, the user can apply to the job. The creator of the job can offer the job to that user. Then the user must accept the job.
+If the skills match, the user can apply for the job. The creator of the job can offer the job to that user. Then the user must accept the job.
 
 The backbone of this project is the job recommendation algorithm, which recommends jobs to users based on the number of skills common between the user and the job.
 
-The database has the following components :
+The database has the following components:
 ![the database](https://github.com/Varunkumar0812/HireMe_A-Java-Webapp/assets/97227862/5b5b6bd0-489b-479b-9ca0-8795d80e4c26)
 
-Frontend : HTML, CSS, Bootstrap (for some pages)
+Frontend : HTML, CSS, and Bootstrap (for some pages)
 
-Backend  : MySQL, Java - JSPs, Servlets
+Backend  : MySQL, Java (JSPs, Servlets)
 
-Here are some screenshots of the project :
+Here are some screenshots of the project:
 ![Landing Page](https://github.com/Varunkumar0812/HireMe_A-Java-Webapp/assets/97227862/2db22b9d-a0f0-46c3-87c3-a52611b728d6)
 The Landing Page
 
