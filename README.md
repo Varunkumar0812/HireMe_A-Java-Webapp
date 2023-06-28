@@ -15,7 +15,7 @@ If the skills match, the user can apply to the job. The creator of the job can o
 The database has the following components :
 ![the database](https://github.com/Varunkumar0812/HireMe_A-Java-Webapp/assets/97227862/5b5b6bd0-489b-479b-9ca0-8795d80e4c26)
 
-Frontend : HTML, CSS
+Frontend : HTML, CSS, Bootstrap (for some pages)
 
 Backend  : MySQL, Java - JSPs, Servlets
 
