@@ -16,6 +16,7 @@ The database has the following components :
 ![the database](https://github.com/Varunkumar0812/HireMe_A-Java-Webapp/assets/97227862/5b5b6bd0-489b-479b-9ca0-8795d80e4c26)
 
 Frontend : HTML, CSS
+
 Backend  : MySQL, Java - JSPs, Servlets
 
 Here are some screenshots of the project :
