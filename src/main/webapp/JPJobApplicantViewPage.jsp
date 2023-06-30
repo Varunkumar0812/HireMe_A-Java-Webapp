@@ -177,7 +177,6 @@ ArrayList<String> skills = new ArrayList<String>();
                 
                 <form action="JPHireApplicant" method="post">
                 	<div>Would you like to offer the job to this applicant ?</div>
-                	<input type="text" name="emailID" value="<%= session.getAttribute("emailID") %>" style="display : none;"/>
                 	<input type="text" name="ApplicantemailID" value="<%= ApplicantemailID %>" style="display : none;"/>
                 	<input type="text" name="job_id" value="<%= job_id %>" style="display : none;"/>
                 	<input type="submit" value="Offer Job" id="offer_but"/>

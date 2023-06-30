@@ -32,11 +32,8 @@ public class JSRegister4_JSResultPage extends HttpServlet {
 			c += DBMSOperations.insertSkills(i, emailID);
 		}
 		
-		RequestDispatcher obj = null;
-		
 		if(c > 0) {
-			obj = request.getRequestDispatcher("JSResultPage.jsp");
-			request.setAttribute("emailID", emailID);
+			RequestDispatcher obj = request.getRequestDispatcher("JSResultPage.jsp");
 			obj.forward(request, response);
 		}
 	}	

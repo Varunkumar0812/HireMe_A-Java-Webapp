@@ -20,30 +20,17 @@ public class JPHireApplicant extends HttpServlet {
 
     public JPHireApplicant() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID = request.getParameter("emailID");
 		String job_id  = request.getParameter("job_id");
 		String ApplicantemailID = request.getParameter("ApplicantemailID");
 		
 		int c = JPOperations.updateRecordHireApplicant(ApplicantemailID, job_id);
+		boolean message = c > 0 ? true : false;
 
-		RequestDispatcher obj = null;
-		
-		if(c > 0) {
-			obj = request.getRequestDispatcher("JPJobApplicantResultPage.jsp");
-			request.setAttribute("emailID", emailID);
-			request.setAttribute("message", true);
-			obj.forward(request, response);
-		}
-		else {
-			obj = request.getRequestDispatcher("JPJobApplicantResultPage.jsp");
-			request.setAttribute("emailID", emailID);
-			request.setAttribute("message", false);
-			obj.forward(request, response);
-		}
+		RequestDispatcher obj = request.getRequestDispatcher("JPJobApplicantResultPage.jsp");;
+		request.setAttribute("message", message);
+		obj.forward(request, response);
 	}
-
 }

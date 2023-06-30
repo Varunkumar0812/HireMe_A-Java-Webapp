@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class DBMSOperations {
     public static ArrayList<String> checkRecord(String email_id, String password) {
     	ArrayList<String> tuple = new ArrayList<String>();
+    	tuple.add(null);
     	
     	try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,10 +21,15 @@ public class DBMSOperations {
     		ResultSet rs = stmt.executeQuery();
     		
     		while(rs.next()) {
+    			tuple.remove(0);
     			tuple.add(rs.getString(1));
     			tuple.add(rs.getString(2));
     			tuple.add(rs.getString(3));
     		}
+    		
+    		rs.close();
+    		stmt.close();
+    		con.close();
     	}
     	catch(Exception e) {
     		System.out.println(e);

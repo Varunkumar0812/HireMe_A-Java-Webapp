@@ -22,13 +22,9 @@ public class JPJobs_JPJobPage extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String job_id = request.getParameter("job_id");
-		String emailID = request.getParameter("email_id");
 		
-		RequestDispatcher obj = null;
-		
-		obj = request.getRequestDispatcher("JPJobPage.jsp");
+		RequestDispatcher obj = request.getRequestDispatcher("JPJobPage.jsp");
 		request.setAttribute("job_id", job_id);
-		request.setAttribute("emailID", emailID);
 		obj.forward(request, response);
 	}
 }

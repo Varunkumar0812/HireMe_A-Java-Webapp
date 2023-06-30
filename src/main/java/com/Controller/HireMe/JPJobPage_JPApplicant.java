@@ -23,16 +23,12 @@ public class JPJobPage_JPApplicant extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID = request.getParameter("emailID");
 		String job_id  = request.getParameter("job_id");
 		String ApplicantemailID = request.getParameter("ApplicantemailID");
 		
 		JPOperations.updateRecordApplicant(ApplicantemailID, job_id);
 		
-		RequestDispatcher obj = null;
-		
-		obj = request.getRequestDispatcher("JPJobApplicantViewPage.jsp");
-		request.setAttribute("emailID", emailID);
+		RequestDispatcher obj = request.getRequestDispatcher("JPJobApplicantViewPage.jsp");
 		request.setAttribute("job_id", job_id);
 		request.setAttribute("ApplicantemailID", ApplicantemailID);
 		obj.forward(request, response);	

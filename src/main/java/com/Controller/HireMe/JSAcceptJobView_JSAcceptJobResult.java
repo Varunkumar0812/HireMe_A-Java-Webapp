@@ -23,15 +23,12 @@ public class JSAcceptJobView_JSAcceptJobResult extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID = request.getParameter("emailID");
 		String job_id  = request.getParameter("job_id");
 	 	
 		int c = JSOperations.updateRecordAcceptJob(job_id);
 		
 		if(c > 0) {
-			RequestDispatcher obj = null;
-			obj = request.getRequestDispatcher("JSAcceptJobResultPage.jsp");
-			request.setAttribute("emailID", emailID);
+			RequestDispatcher obj = request.getRequestDispatcher("JSAcceptJobResultPage.jsp");
 			obj.forward(request, response);	
 		}
 	}

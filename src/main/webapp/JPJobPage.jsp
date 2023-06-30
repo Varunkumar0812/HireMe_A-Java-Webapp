@@ -179,7 +179,6 @@
 		            	<div id="job_title"><%= getName(rs.getString(1)) %></div>
 		                	<form action="JPJobPage_JPApplicant" method="post">
 		                    	<input type="text" name="job_id" value="<%= job_id %>" style="display : none;"/>
-		                        <input type="text" name="emailID" value="<%= session.getAttribute("emailID") %>" style="display : none;"/>
 		                       	<input type="text" name="ApplicantemailID" value="<%= rs.getString(1) %>" style="display : none;"/>
 		                        <input type="submit" id="job_status" style="border : none;" value="More details"/>
 		                    </form>

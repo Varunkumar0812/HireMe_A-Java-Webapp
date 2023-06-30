@@ -24,13 +24,13 @@ public class JPProfileEdit_JPProfile extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID   = request.getParameter("emailID");
-		String comp_name = request.getParameter("comp_name");
+		String emailID    = request.getParameter("emailID");
+		String comp_name  = request.getParameter("comp_name");
 		String serv_type  = request.getParameter("serv_type");
-		String doorNo    = request.getParameter("doorNo");
+		String doorNo     = request.getParameter("doorNo");
 		String streetName = request.getParameter("streetName");
-		String city      = request.getParameter("city");
-		String state     = request.getParameter("state");
+		String city       = request.getParameter("city");
+		String state      = request.getParameter("state");
 		String pincode   = request.getParameter("pincode");
 		
 		
@@ -47,10 +47,9 @@ public class JPProfileEdit_JPProfile extends HttpServlet {
 		
 		int a = JPOperations.updateRecordProfileEdit(tuple);
 		int b = JPOperations.updateJobsTable(emailID, comp_name);
-		
-		RequestDispatcher obj = null;		
+			
 		if(a > 0 && b >= 0) {
-			obj = request.getRequestDispatcher("JPDashboard_ProfilePage.jsp");
+			RequestDispatcher obj = request.getRequestDispatcher("JPDashboard_ProfilePage.jsp");
 			request.setAttribute("emailID", emailID);
 			obj.forward(request, response);
 		}

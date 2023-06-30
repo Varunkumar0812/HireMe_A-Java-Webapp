@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Modal.HireMe.JSOperations;
-
 /**
  * Servlet implementation class JSJobSearching_JSApplyJobView
  */
@@ -24,12 +22,9 @@ public class JSJobSearching_JSApplyJobView extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String job_id = request.getParameter("job_id");
-		String emailID = request.getParameter("emailID");
 		
-		RequestDispatcher obj = null;
-		obj = request.getRequestDispatcher("JSApplyJobViewPage.jsp");
+		RequestDispatcher obj = request.getRequestDispatcher("JSApplyJobViewPage.jsp");
 		request.setAttribute("job_id", job_id);
-		request.setAttribute("emailID", emailID);
 		obj.forward(request, response);
 	}	
 }

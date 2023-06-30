@@ -27,20 +27,10 @@ public class JSApplyJobView_JSApplyJobResult extends HttpServlet {
 		String emailID = request.getParameter("emailID");
 		
 		int c = JSOperations.insertRecordApplyJob(job_id, emailID);
+		boolean message = c > 0 ? true : false;
 		
-		RequestDispatcher obj = null;
-		
-		if(c > 0) {
-			obj = request.getRequestDispatcher("JSApplyJobResultPage.jsp");
-			request.setAttribute("emailID", emailID);
-			request.setAttribute("message", true);
-			obj.forward(request, response);
-		}
-		else {
-			obj = request.getRequestDispatcher("JSApplyJobResultPage.jsp");
-			request.setAttribute("emailID", emailID);
-			request.setAttribute("message", false);
-			obj.forward(request, response);
-		}
+		RequestDispatcher obj = request.getRequestDispatcher("JSApplyJobResultPage.jsp");
+		request.setAttribute("message", message);
+		obj.forward(request, response);
 	}
 }

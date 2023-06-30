@@ -24,14 +24,14 @@ public class JPRegister4_JPResultPage extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String com_name  = request.getParameter("com_name");
-		String ser_type  = request.getParameter("ser_type");
-		String door_no   = request.getParameter("door_no");
-		String streetName= request.getParameter("streetName");
-		String city      = request.getParameter("city");
-		String state     = request.getParameter("state");
-		String pincode   = request.getParameter("pincode");
-		String emailID   = request.getParameter("emailID");
+		String com_name   = request.getParameter("com_name");
+		String ser_type   = request.getParameter("ser_type");
+		String door_no    = request.getParameter("door_no");
+		String streetName = request.getParameter("streetName");
+		String city       = request.getParameter("city");
+		String state      = request.getParameter("state");
+		String pincode    = request.getParameter("pincode");
+		String emailID    = request.getParameter("emailID");
 		
 		int c = DBMSOperations.insertRecordCompanyDetails(emailID, com_name, ser_type, door_no, streetName, city, state, pincode);
 		
@@ -39,17 +39,15 @@ public class JPRegister4_JPResultPage extends HttpServlet {
 		
 		RequestDispatcher obj = null;
 		
-		if(Validation.nameValidity(com_name) && Validation.nameValidity(ser_type) && Validation.pincodeValidity(pincode)) {
+		if(Validation.nameValidity(com_name) && Validation.nameValidity(ser_type) && Validation.pincodeValidity(pincode) && c > 0) {
 			obj = request.getRequestDispatcher("JPResultPage.jsp");
-			request.setAttribute("emailID", emailID);
-			obj.forward(request, response);
 		}
 		else {
 			obj = request.getRequestDispatcher("JPRegistration4.jsp");
 			request.setAttribute("err_messages", err_mess);
-			request.setAttribute("emailID", emailID);
-			obj.forward(request, response);
 		}
+		
+		obj.forward(request, response);
 	}
 
 }

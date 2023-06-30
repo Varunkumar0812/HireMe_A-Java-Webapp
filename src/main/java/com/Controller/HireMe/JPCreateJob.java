@@ -51,12 +51,6 @@ public class JPCreateJob extends HttpServlet {
 		RequestDispatcher obj = null;
 		if(c > 0 && b == skills.length) {
 			obj = request.getRequestDispatcher("JPJobCreateResultPage.jsp");
-			request.setAttribute("emailID", email_id);
-			obj.forward(request, response);
-		}
-		else {
-			obj = request.getRequestDispatcher("JPJobCreateResultPage.jsp");
-			request.setAttribute("emailID", email_id);
 			obj.forward(request, response);
 		}
 	}

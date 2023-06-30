@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		
 		RequestDispatcher obj = null;
 		
-		if(DBMSOperations.checkRecord(emailID, password) != null) {
+		if(DBMSOperations.checkRecord(emailID, password).get(0) != null) {
 			ArrayList<String> tuple = DBMSOperations.checkRecord(emailID, password);
 			
 			HttpSession session = request.getSession();

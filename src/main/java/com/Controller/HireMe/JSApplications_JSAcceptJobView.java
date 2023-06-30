@@ -21,12 +21,9 @@ public class JSApplications_JSAcceptJobView extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID = request.getParameter("emailID");
 		String job_id  = request.getParameter("job_id");
 		
-		RequestDispatcher obj = null;
-		obj = request.getRequestDispatcher("JSAcceptJobViewPage.jsp");
-		request.setAttribute("emailID", emailID);
+		RequestDispatcher obj = request.getRequestDispatcher("JSAcceptJobViewPage.jsp");
 		request.setAttribute("job_id", job_id);
 		obj.forward(request, response);
 	}

@@ -33,5 +33,4 @@ public class Logout extends HttpServlet {
 			obj.forward(request, response);
 		}
 	}
-
 }
