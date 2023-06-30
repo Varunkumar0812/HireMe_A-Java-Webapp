@@ -11,12 +11,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Registration - Personal details page</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.png">
 	<link rel="stylesheet" href="styles/Login_Register.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
     <style>       
         .form_container {
@@ -57,14 +59,6 @@
 	
 		String[] warnings = new String[3];
 	%>
-   
-    <%
-   		String emailID = null;
-   		if(request.getAttribute("emailID") != null) {
-   			emailID = (String) request.getAttribute("emailID");
-   		}
-    %>
-
 
     <div class="form_container">
         <div style="text-align : center;margin-bottom: 20px;">
@@ -82,28 +76,17 @@
             </div>
             
             <div id="err-mes" style="margin-top : 15px; margin-left: 15px; width : 46%;">
- 					<%
-					if(!err_mess[0]) {
-					%>
-						<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;">
-						  First name not valid!
-						</div>
-					<%
-					}
-					%>
+ 				<% if(!err_mess[0]) { %>
+					<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;"> First name not valid! </div>
+				<% } %>
 			</div> 
 			
             <div id="err-mes" style="margin-top : 15px; margin-left: 30px; width : 46%;">
- 				<%
-				if(!err_mess[1]) {
-				%>
-					<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;">
-					  Last name not valid!
-					</div>
-				<%			
-					}
-				%>
+ 				<% if(!err_mess[1]) { %>
+					<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;"> Last name not valid! </div>
+				<% } %>
 			</div>
+			
             <div class="col-12" style="margin-top : 15px;">
               <label for="inputAddress" class="form-label">Door no</label>
               <input name="door_no" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
@@ -163,7 +146,7 @@
 					}
 					%>
 			</div> 
-            <input name="emailID" style="display : none" value='<%= emailID%>'/>
+            <input name="emailID" style="display : none" value='<%= session.getAttribute("emailID") %>'/>
             <div class="but_holder">
                 <div style="float: left; margin-top : 15px;">Steps : </div>
                     <ul class="pagination pagination-sm" style="width : 50%; display : inline-flex; float : left; margin-left : 10px; margin-top : 15px;">

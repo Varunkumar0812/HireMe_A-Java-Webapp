@@ -1,5 +1,7 @@
 @charset "ISO-8859-1";
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@500&family=Roboto+Slab:wght@600&family=Varela+Round&display=swap');
+
 @keyframes slideInLeft {
     from {
         transform : translateX(30vw);
@@ -26,9 +28,8 @@ body {
 }
 
 #logo:hover {   
-    margin        : 0;
-    font-size     : 51px;
-    transition    : 0.3s;
+	transform     : scale(1.025);
+	transition    : 0.2s;
 }
 
 .container {
@@ -101,15 +102,16 @@ body {
     transition    : 0.3s;
 }
 
-.sidebar > ul > li> div {
+.sidebar > ul > li > div {
     font-size : 20px;
 }
 
-.sidebar > ul > li input {
-    background    : #0B2447;
+.sidebar > ul > li > input {
+	background    : #0B2447;
+	width         : 100%;
+    height        : 55px;	
     color         : white;
-    width         : 100%;
-    height        : 55px;
+    padding-top   : 5px;
     padding-left  : 20px;
     border        : none;
     font-size     : 20px;
@@ -117,7 +119,8 @@ body {
     text-align    : left;
 }
 
-.sidebar > ul > li input:hover {
+
+.sidebar > ul > li > input:hover {
     background    : #021024;
     cursor        : pointer;
     transition    : 0.3s;

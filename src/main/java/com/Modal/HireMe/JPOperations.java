@@ -179,4 +179,28 @@ public class JPOperations {
     	
     	return c;
     }
+    
+    
+    public static int updateJobsTable(String email_id, String com_name) {
+    	int c = 0;
+    	
+    	try {
+    		Class.forName("com.mysql.cj.jdbc.Driver");
+    		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demoproject", "root", "Tvarun@0812");
+    		PreparedStatement stmt = con.prepareStatement("UPDATE Jobs SET com_name=? WHERE email_id=?");
+    		
+    		stmt.setString(1, com_name);
+    		stmt.setString(2, email_id);
+    		
+    		c = stmt.executeUpdate();
+    		
+    		stmt.close();
+    		con.close();
+    	}
+    	catch(Exception e) {
+    		System.out.println(e);
+    	}
+    	
+    	return c;
+    }
 }

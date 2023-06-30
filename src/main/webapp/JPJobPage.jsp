@@ -10,12 +10,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Applicants Page</title>
 
 <link rel="icon" type="image/x-icon" href="images/logo.png">
 <link rel="stylesheet" href="styles/Dashboard.css">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@500&family=Roboto+Slab:wght@600&family=Varela+Round&display=swap');
 
 #search_job_but {
     background    : #409dd7;
@@ -97,19 +100,10 @@
 
 </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nunito&family=PT+Sans&family=Play:wght@700&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather+Sans:wght@500&family=Merriweather:wght@300&family=Poppins:wght@500&family=Varela+Round&display=swap" rel="stylesheet">
-
+</head>
 <body>
      <%
-    	String emailID = null;
-    	if(request.getAttribute("emailID") != null) {
-    		emailID = (String) request.getAttribute("emailID");
-    	}
-    
-    	String job_id = null;
+     	String job_id = null;
     	if(request.getAttribute("job_id") != null ){
     		job_id = (String) request.getAttribute("job_id");
     	}
@@ -146,50 +140,32 @@
     %>
     
     
-    <div class="container">
-        <nav class="nav" style="padding : 5px;">
-            <div style="height : 65px;">
-                <div id="logo">HireMe</div>
-            </div>
-        </nav>
-
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <form action="JPDashboardRedirect" method="post">
-                    	<input type="text" name="emailID" value="<%= emailID %>" style="display : none;"/>
-                        <input type="submit" value="My Profile">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPJobsRedirect" method="post">
-                    	<input type="text" name="emailID" value="<%= emailID %>" style="display : none;"/>
-                        <input type="submit" value="My Jobs">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPLogout" method="post">
-                    	<input type="text" name="emailID" value="<%= emailID %>" style="display : none;"/>
-                        <input type="submit" value="Logout">
-                     </form>
-                </li>
-            </ul>
+<div class="container">
+	<nav class="nav" style="padding : 5px;">
+    	<div style="height : 65px;">
+        	<div id="logo">HireMe</div>
         </div>
+    </nav>
 
-        <div class="main-content">
-            <div style="width : 89%;">
-            	<div style="position: relative; height : 50px;">
-                    <h1 id="title" style="float: left; margin-top : 0px;">Applicants</h1>
-                </div>
-                
-                <hr id="hr-sep">
+    <div class="sidebar">
+    	<ul>
+        	<li><input type="submit" value="My Profile" onclick="location.href='JPDashboard_ProfilePage.jsp'"/></li>
+            <li><input type="submit" value="My Jobs" onclick="location.href='JPDashboard_JobsPage.jsp'"/></li>
+            <li><input type="submit" value="Logout" onclick="location.href='JPLogoutPage.jsp'"/></li>
+       	</ul>
+   	</div>
 
-            <div>
-                Here is a list of applicants who applied for this job.
+    <div class="main-content">
+    	<div style="width : 89%;">
+        	<div style="position: relative; height : 50px;">
+            	<h1 id="title" style="float: left; margin-top : 0px;">Applicants</h1>
             </div>
+                
+            <hr id="hr-sep">
+
+            <div>Here is a list of applicants who applied for this job.</div>
 
             <div style="padding : 10px; margin-top : 20px;">
-           
             <%
 			try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
@@ -197,41 +173,31 @@
 					Statement stmt = con.createStatement();
 					ResultSet rs = stmt.executeQuery("SELECT email_id FROM applications WHERE job_id=\"" + job_id + "\" AND status!=\"Offered\" ");  
 					while(rs.next())  {
-						
 			%> 
-						
-						<div class="job_box">
-		                    <div style='position : relative;'>
-		                        <div id="job_title"><%= getName(rs.getString(1)) %></div>
-		                        <form action="JPJobPage_JPApplicant" method="post">
-		                        	<input type="text" name="job_id" value="<%= job_id %>" style="display : none;"/>
-		                        	<input type="text" name="emailID" value="<%= emailID %>" style="display : none;"/>
-		                        	<input type="text" name="ApplicantemailID" value="<%= rs.getString(1) %>" style="display : none;"/>
-		                            <input type="submit" id="job_status" style="border : none;" value="More details"/>
-		                        </form>
-		                    </div>
-		                    <div id="job_company">Contact : <%= rs.getString(1) %></div>
+				<div class="job_box">
+		        	<div style='position : relative;'>
+		            	<div id="job_title"><%= getName(rs.getString(1)) %></div>
+		                	<form action="JPJobPage_JPApplicant" method="post">
+		                    	<input type="text" name="job_id" value="<%= job_id %>" style="display : none;"/>
+		                        <input type="text" name="emailID" value="<%= session.getAttribute("emailID") %>" style="display : none;"/>
+		                       	<input type="text" name="ApplicantemailID" value="<%= rs.getString(1) %>" style="display : none;"/>
+		                        <input type="submit" id="job_status" style="border : none;" value="More details"/>
+		                    </form>
 		                </div>
-		
+		            <div id="job_company">Contact : <%= rs.getString(1) %></div>
+	            </div>
 		    <%		
 					}
-					
 					rs.close();
 					stmt.close();
 					con.close();
 				}
-				catch(Exception e) {
-					
-				}
-				
+				catch(Exception e) {}
 			%>
-
-                </div>
-            </div>
-            
-        </div>
-
-    </div>
+			</div>
+		</div>
+	</div>
+</div>
     
 </body>
 </html>

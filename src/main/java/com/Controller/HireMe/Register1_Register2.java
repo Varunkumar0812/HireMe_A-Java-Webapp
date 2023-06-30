@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Modal.HireMe.DBMSOperations;
 import com.Modal.HireMe.Validation;
@@ -24,29 +25,31 @@ public class Register1_Register2 extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email_id   = request.getParameter("email_id");
+		String emailID    = request.getParameter("email_id");
 		String password   = request.getParameter("password");
 		String c_password = request.getParameter("c_password");
 			
-		boolean[] err_mess = { Validation.emailAlreadyExists(email_id), 
+		boolean[] err_mess = { Validation.emailAlreadyExists(emailID), 
 				Validation.passwordValidity(password), 
 				password.equals(c_password)
 		};
 	
 		if(err_mess[0]  && err_mess[1] && err_mess[2]) {
-			DBMSOperations.insertEmailDetails(email_id, password);
+			DBMSOperations.insertEmailDetails(emailID, password);
 		}
 		
 		
-		System.out.println(Validation.emailAlreadyExists(email_id));
+		System.out.println(Validation.emailAlreadyExists(emailID));
 		System.out.println(Validation.passwordValidity(password));
 		System.out.println(password.equals(c_password));
 		
 		RequestDispatcher obj = null;
 		
 		if(err_mess[0] && Validation.passwordValidity(password) && password.equals(c_password)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("emailID", emailID);
+			
 			obj = request.getRequestDispatcher("Registration2.jsp");
-			request.setAttribute("emailID", email_id);
 			obj.forward(request, response);
 		}
 		else {

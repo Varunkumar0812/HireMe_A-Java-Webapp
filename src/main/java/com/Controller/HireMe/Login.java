@@ -1,6 +1,7 @@
 package com.Controller.HireMe;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Modal.HireMe.DBMSOperations;
 
@@ -29,14 +31,19 @@ public class Login extends HttpServlet {
 		RequestDispatcher obj = null;
 		
 		if(DBMSOperations.checkRecord(emailID, password) != null) {
-			if(DBMSOperations.checkRecord(emailID, password).equals("JS")) {
+			ArrayList<String> tuple = DBMSOperations.checkRecord(emailID, password);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("emailID", emailID);
+			session.setAttribute("firstName", tuple.get(0));
+			session.setAttribute("lastName",  tuple.get(1));
+			
+			if(DBMSOperations.checkRecord(emailID, password).get(2).equals("JS")) {
 				obj = request.getRequestDispatcher("JSDashboard_ProfilePage.jsp");
-				request.setAttribute("emailID", emailID);
 				obj.forward(request, response);
 			}
-			else if(DBMSOperations.checkRecord(emailID, password).equals("JP")) {
+			else if(DBMSOperations.checkRecord(emailID, password).get(2).equals("JP")) {
 				obj = request.getRequestDispatcher("JPDashboard_ProfilePage.jsp");
-				request.setAttribute("emailID", emailID);
 				obj.forward(request, response);
 			}
 		}

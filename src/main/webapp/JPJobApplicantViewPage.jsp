@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="styles/Dashboard.css">
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@500&family=Roboto+Slab:wght@600&family=Varela+Round&display=swap');
+
     #offer_but {
         background    : #409dd7;
         height        : 40px; 
@@ -34,18 +36,10 @@
 
 </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nunito&family=PT+Sans&family=Play:wght@700&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather+Sans:wght@500&family=Merriweather:wght@300&family=Poppins:wght@500&family=Varela+Round&display=swap" rel="stylesheet">
+</head>
 <body>
 
-<%
-	String emailID = null;
-	if(request.getAttribute("emailID") != null) {
-		emailID = (String) request.getAttribute("emailID");
-	}
-	
+<%	
 	String ApplicantemailID = null;
 	if(request.getAttribute("ApplicantemailID") != null) {
 		ApplicantemailID = (String) request.getAttribute("ApplicantemailID");
@@ -114,28 +108,13 @@ ArrayList<String> skills = new ArrayList<String>();
             </div>
         </nav>
 
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <form action="JPDashboardRedirect" method="post">
-                    	<input type="text" name="emailID" value="<%= emailID %>" style="display : none"/>
-                        <input type="submit" value="My Profile">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPJobsRedirect" method="post">
-                    	<input type="text" name="emailID" value="<%= emailID %>" style="display : none"/>
-                        <input type="submit" value="My Jobs">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPLogout" method="post">
-                    <input type="text" name="emailID" value="<%= emailID %>" style="display : none"/>
-                        <input type="submit" value="Logout">
-                     </form>
-                </li>
-            </ul>
-        </div>
+    <div class="sidebar">
+    	<ul>
+        	<li><input type="submit" value="My Profile" onclick="location.href='JPDashboard_ProfilePage.jsp'"/></li>
+            <li><input type="submit" value="My Jobs" onclick="location.href='JPDashboard_JobsPage.jsp'"/></li>
+            <li><input type="submit" value="Logout" onclick="location.href='JPLogoutPage.jsp'"/></li>
+       	</ul>
+   	</div>
 
         <div class="main-content">
             <div style="width : 89%;">
@@ -194,20 +173,17 @@ ArrayList<String> skills = new ArrayList<String>();
                             %>
                         </ul>
                     </div>
-                
                 </div>
                 
                 <form action="JPHireApplicant" method="post">
                 	<div>Would you like to offer the job to this applicant ?</div>
-                	<input type="text" name="emailID" value="<%= emailID %>" style="display : none;"/>
+                	<input type="text" name="emailID" value="<%= session.getAttribute("emailID") %>" style="display : none;"/>
                 	<input type="text" name="ApplicantemailID" value="<%= ApplicantemailID %>" style="display : none;"/>
                 	<input type="text" name="job_id" value="<%= job_id %>" style="display : none;"/>
                 	<input type="submit" value="Offer Job" id="offer_but"/>
                 </form>
-
             </div>
         </div>
-
     </div>
 
 </body>

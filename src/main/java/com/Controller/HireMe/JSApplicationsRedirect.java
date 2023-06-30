@@ -21,11 +21,8 @@ public class JSApplicationsRedirect extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email_id = request.getParameter("emailID");
-		
 		RequestDispatcher obj = null;
 		obj = request.getRequestDispatcher("JSDashboard_ApplicationsPage.jsp");
-		request.setAttribute("emailID", email_id);
 		obj.forward(request, response);
 	}
 }

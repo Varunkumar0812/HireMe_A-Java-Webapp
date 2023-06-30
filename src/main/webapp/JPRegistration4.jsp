@@ -11,14 +11,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Registration - Professional Details page</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.png">
 	<link rel="stylesheet" href="styles/Login_Register.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
-    <style>       
+    <style> 
+    	@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@500&family=Roboto+Slab:wght@600&family=Varela+Round&display=swap');
+	      
         .form_container {
             width          : 800px;
             margin         : 5vw auto 5vw auto;
@@ -40,11 +43,10 @@
                 width      : 90%;
             }
         }
-
     </style>
+    
 </head>
 <body>
-
     <%
 		boolean[] err_mess = new boolean[3];
 		if(request.getAttribute("err_messages") != null) {
@@ -58,13 +60,6 @@
 		
 		String[] warnings = new String[3];
 	%>
-   
-   <%
-   		String emailID = null;
-   		if(request.getAttribute("emailID") != null) {
-   			emailID = (String) request.getAttribute("emailID");
-   		}
-   %>  
 
     <div class="form_container">
         <div style="text-align : center;margin-bottom: 20px;">
@@ -82,43 +77,36 @@
             </div>
             
             <div id="err-mes" style="margin-top : 15px; margin-left: 15px; width : 46%;">
-	 				<%
-					if(!err_mess[0]) {
-					%>
+	 				<% if(!err_mess[0]) { %>
 						<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;">
 						  Company name not valid!
 						</div>
-					<%
-					}
-					%> 
-			      </div> 
+					<% } %> 
+			</div> 
 			
             <div id="err-mes" style="margin-top : 15px; margin-left: 30px; width : 46%;">
-  				<%
-				if(!err_mess[1]) {
-				%>
+  				<% if(!err_mess[1]) { %>
 					<div class="alert alert-danger" role="alert" style="margin-bottom : 0px;">
 					  Service provided not valid!
 					</div>
-				<%			
-					}
-				%> 
-			      </div>
+				<% } %> 
+			</div>
+			
             <div class="col-12" style="margin-top : 15px;">
-              <label for="inputAddress" class="form-label">Door no</label>
-              <input name="door_no" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            	<label for="inputAddress" class="form-label">Door no</label>
+            	<input name="door_no" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
             </div>
             <div class="col-12" style="margin-top : 15px;">
-              <label for="inputAddress2" class="form-label">Street name</label>
-              <input name="streetName" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
+            	<label for="inputAddress2" class="form-label">Street name</label>
+            	<input name="streetName" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
             </div>
             <div class="col-md-6" style="margin-top : 15px;">
-              <label for="inputCity" class="form-label">City</label>
-              <input name="city" type="text" class="form-control" id="inputCity" required>
+            	<label for="inputCity" class="form-label">City</label>
+            	<input name="city" type="text" class="form-control" id="inputCity" required>
             </div>
             <div class="col-md-4" style="margin-top : 15px;">
-              <label for="inputState" class="form-label">State</label>
-               <%
+            	<label for="inputState" class="form-label">State</label>
+             	<%
 					ArrayList<String> states = new ArrayList<String>();
 					
 					try {
@@ -141,35 +129,27 @@
 					Collections.sort(states);
 				%>  
                 <select name="state" id="inputState" class="form-select" required>
-                    <%
-						for(String i : states) {
-					%>
+	                <% for(String i : states) { %>
 					<option><%= i %></option>
 					<% } %> 
                 </select>
             </div>
             <div class="col-md-2" style="margin-top : 15px;">
-              <label for="inputZip" class="form-label">Pincode</label>
-              <input name="pincode" type="number" class="form-control" id="inputZip" maxlength="6" required >
+            	<label for="inputZip" class="form-label">Pincode</label>
+            	<input name="pincode" type="number" class="form-control" id="inputZip" maxlength="6" required >
             </div>
             <div id="err-mes" style="width : 100%; text-align : left; margin-top : 15px; display : inline-flex; justify-content : right; margin-right : 15px;">
- 					<%
-					if(!err_mess[2]) {
-					%>
+ 					<% if(!err_mess[2]) { %>
 						<div class="alert alert-danger" role="alert" style="width : 30%; margin-bottom : 0px;">
 						  Pincode not valid!
 						</div>
-					<%
-					}
-					%>  
-			    </div> 
-            <input name="emailID" style="display : none" value='<%= emailID%>'/>
+					<% } %>  
+			</div> 
+            <input name="emailID" style="display : none" value='<%= session.getAttribute("emailID") %>'/>
             <div class="but_holder">
                 <div style="float: left; margin-top : 15px;">Steps : </div>
                     <ul class="pagination pagination-sm" style="width : 50%; display : inline-flex; float : left; margin-left : 10px; margin-top : 15px;">
                       <li class="page-item" style="width : 10%; text-align : center;"><div class="page-link" style=" color : #0E2954;">1</div></li>
-                      
-                      
                       <li class="page-item" style="width : 10%; text-align : center;"><div class="page-link" style=" color : #0E2954;">2</div></li>
                       <li class="page-item" style="width : 10%; text-align : center;"><div class="page-link" style=" color : #0E2954;">3</div></li>
                     
@@ -177,10 +157,10 @@
                       	   <span class="page-link" style="background-color : #0E2954; border-color: #0E2954;">4</span>
                       </li>
                     </ul>
-              <button type="submit" class="btn btn-primary" id="sub_but">Next</button>
+           		<button type="submit" class="btn btn-primary" id="sub_but">Next</button>
             </div>
-          </form>
-        </div>
+		</form>
+	</div>
     
 </body>
 </html>

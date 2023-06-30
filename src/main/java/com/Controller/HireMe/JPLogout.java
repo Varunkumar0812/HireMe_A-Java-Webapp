@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class JPLogout
@@ -21,12 +22,13 @@ public class JPLogout extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String emailID = request.getParameter("emailID");
+		HttpSession session = request.getSession(false);
 		
-		RequestDispatcher obj = null;
-		obj = request.getRequestDispatcher("JPLogoutPage.jsp");
-		request.setAttribute("emailID", emailID);
-		obj.forward(request, response);
+		if(session != null) {
+			session.removeAttribute("emailID");
+			
+			RequestDispatcher obj = request.getRequestDispatcher("LandingPage.jsp");
+			obj.forward(request, response);
+		}
 	}
-
 }

@@ -7,27 +7,29 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class DBMSOperations {
-    public static String checkRecord(String email_id, String password) {
-    	String res = null;
+    public static ArrayList<String> checkRecord(String email_id, String password) {
+    	ArrayList<String> tuple = new ArrayList<String>();
     	
     	try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
     		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demoproject", "root", "Tvarun@0812");
-    		PreparedStatement stmt = con.prepareStatement("SELECT user_type FROM Users WHERE email_id=? AND password=?");
+    		PreparedStatement stmt = con.prepareStatement("SELECT first_name, last_name, user_type FROM Users WHERE email_id=? AND password=?");
     		stmt.setString(1, email_id);
     		stmt.setString(2, Encryption.encrypt(password));
     		
     		ResultSet rs = stmt.executeQuery();
     		
     		while(rs.next()) {
-    			res = rs.getString(1);
+    			tuple.add(rs.getString(1));
+    			tuple.add(rs.getString(2));
+    			tuple.add(rs.getString(3));
     		}
     	}
     	catch(Exception e) {
     		System.out.println(e);
     	}
     	
-    	return res;
+    	return tuple;
     }
     
     public static int insertEmailDetails(String emailID, String password) {

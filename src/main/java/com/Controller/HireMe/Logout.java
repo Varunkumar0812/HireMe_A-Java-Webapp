@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class JSLogout
+ * Servlet implementation class Logout
  */
-@WebServlet("/JSLogout")
-public class JSLogout extends HttpServlet {
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public JSLogout() {
+       
+    public Logout() {
         super();
     }
     
@@ -26,9 +26,12 @@ public class JSLogout extends HttpServlet {
 		
 		if(session != null) {
 			session.removeAttribute("emailID");
+			session.removeAttribute("firstName");
+			session.removeAttribute("lastName");
 			
 			RequestDispatcher obj = request.getRequestDispatcher("LandingPage.jsp");
 			obj.forward(request, response);
 		}
 	}
+
 }

@@ -46,9 +46,10 @@ public class JPProfileEdit_JPProfile extends HttpServlet {
 		tuple.add(pincode);
 		
 		int a = JPOperations.updateRecordProfileEdit(tuple);
+		int b = JPOperations.updateJobsTable(emailID, comp_name);
 		
 		RequestDispatcher obj = null;		
-		if(a > 0) {
+		if(a > 0 && b >= 0) {
 			obj = request.getRequestDispatcher("JPDashboard_ProfilePage.jsp");
 			request.setAttribute("emailID", emailID);
 			obj.forward(request, response);

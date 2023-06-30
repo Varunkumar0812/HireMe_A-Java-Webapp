@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Modal.HireMe.DBMSOperations;
 import com.Modal.HireMe.Validation;
@@ -44,6 +45,12 @@ public class Register2_Register3 extends HttpServlet {
 		String emailID   = request.getParameter("emailID");
 		tuple.add(emailID);
 
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.setAttribute("firstName", firstName);
+			session.setAttribute("lastName" , lastName);
+		}
+		
 		int c = DBMSOperations.updatePersonalDetails(tuple);
 
 		if(c >= 0) {

@@ -6,17 +6,19 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Create new job</title>
 
 <link rel="icon" type="image/x-icon" href="images/logo.png">
 <link rel="stylesheet" href="styles/Dashboard.css">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@500&family=Roboto+Slab:wght@600&family=Varela+Round&display=swap');
 
 .main-content {
     padding-right   : 100px;
@@ -104,127 +106,91 @@ select::-webkit-scrollbar-thumb {
 }
 </style>
 
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nunito&family=PT+Sans&family=Play:wght@700&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather+Sans:wght@500&family=Merriweather:wght@300&family=Poppins:wght@500&family=Varela+Round&display=swap" rel="stylesheet">
+</head>
 <body>
-<%
-    String emailID = null;
-	if(request.getAttribute("emailID") != null) {
-		emailID = (String) request.getAttribute("emailID");
-	}
-%> 
 
-    <div class="container">
+<div class="container">
         <nav class="nav" style="padding : 5px;">
             <div style="height : 65px;">
                 <div id="logo">HireMe</div>
             </div>
         </nav>
 
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <form action="JPDashboardRedirect" method="post">
-                    <input type="text" value="<%= emailID %>" name="emailID" style="display : none">
-                        <input type="submit" value="My Profile">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPJobsRedirect" method="post">
-                    <input type="text" value="<%= emailID %>" name="emailID" style="display : none">
-                        <input type="submit" value="My Jobs">
-                     </form>
-                </li>
-                <li>
-                    <form action="JPLogout" method="post">
-                    <input type="text" name="emailID" value="<%= emailID %>" style="display : none"/>
-                        <input type="submit" value="Logout">
-                     </form>
-                </li>
-            </ul>
-        </div>
+    <div class="sidebar">
+    	<ul>
+        	<li><input type="submit" value="My Profile" onclick="location.href='JPDashboard_ProfilePage.jsp'"/></li>
+            <li><input type="submit" value="My Jobs" onclick="location.href='JPDashboard_JobsPage.jsp'"/></li>
+            <li><input type="submit" value="Logout" onclick="location.href='JPLogoutPage.jsp'"/></li>
+       	</ul>
+   	</div>
         
 
-    	<div class="main-content">
+    <div class="main-content">
+    	<form action="JPCreateJob" method="post">
+    		<div class="title">Create Job</div>
 
-            <form action="JPCreateJob" method="post">
-    		            <div class="title">
-    		                Create Job
-    		            </div>
-
-    		            <div class="holderbox">
-    		                <div class="com_name">
-    		                    <div><b>Job Title</b></div>
-    		                    <input type="text" name="job_tit" class="text-box" required/>
-    		                </div>
-    		                <div class="salary">
-    		                    <div><b>Salary</b></div>
-    		                    <input type="number" name="salary" class="text-box" required/>
-    		                </div>
-    		            </div>
+    		<div class="holderbox">
+    			<div class="com_name">
+    		    	<div><b>Job Title</b></div>
+    		    	<input type="text" name="job_tit" class="text-box" required/>
+    			</div>
+    			<div class="salary">
+    		    	<div><b>Salary</b></div>
+    		    	<input type="number" name="salary" class="text-box" required/>
+    		    	</div>
+    			</div>
     		            
-    		            <div class="holderbox2">
-    		                <div style="margin-bottom : 10px;"><b>Minimum experience needed</b></div>
-    		                <input type="number" name="min_exp" class="text-box" required/>
-    		            </div>
+    			<div class="holderbox2">
+    		    	<div style="margin-bottom : 10px;"><b>Minimum experience needed</b></div>
+    		    	<input type="number" name="min_exp" class="text-box" required/>
+    			</div>
+				<div class="holderbox2">
+    		    	<div style="margin-bottom : 10px;"><b>Responsibility</b></div>
+    		    	<input type="text" name="respon" class="text-box" required/>
+    			</div>
 
-    		            <div class="holderbox2">
-    		                <div style="margin-bottom : 10px;"><b>Responsibility</b></div>
-    		                <input type="text" name="respon" class="text-box" required/>
-    		            </div>
+    			<div class="holderbox2">
+    		    	<div style="margin-bottom : 10px;"><b>Description</b></div>
+    		    	<textarea name="descr" style="height : 150px; width : 52%; font-family: 'Varela', 'round'; font-size: 20px;"></textarea>
+    			</div>
 
-    		            <div class="holderbox2">
-    		                <div style="margin-bottom : 10px;"><b>Description</b></div>
-    		                <textarea name="descr" style="height : 150px; width : 52%; font-family: 'Varela', 'round'; font-size: 20px;"></textarea>
-    		            </div>
-
-                        <div class="holderbox2">
-                            <div><b>Skills</b></div>
-
-			                <%
-								ArrayList<String> skills = new ArrayList<String>();
+           		<div class="holderbox2">
+           			<div><b>Skills</b></div>
+					<%
+						ArrayList<String> skills = new ArrayList<String>();
 								
-								try {
-									Class.forName("com.mysql.cj.jdbc.Driver");
-									Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demoproject", "root", "Tvarun@0812");
-									Statement stmt = con.createStatement();
-									ResultSet rs = stmt.executeQuery("SELECT skill FROM Skills");  
-									while(rs.next())  {
-										skills.add(rs.getString(1));
-									}
+						try {
+							Class.forName("com.mysql.cj.jdbc.Driver");
+							Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demoproject", "root", "Tvarun@0812");
+							Statement stmt = con.createStatement();
+							ResultSet rs = stmt.executeQuery("SELECT skill FROM Skills");  
+							while(rs.next())  {
+								skills.add(rs.getString(1));
+							}
 									
-									rs.close();
-									stmt.close();
-									con.close();
-								}
-								catch(Exception e) {
-									
-								}
+							rs.close();
+							stmt.close();
+							con.close();
+						}
+						catch(Exception e) {
+						}
 								
-								Collections.sort(skills);
-							%>
-			                <select name="skills" multiple style="height : 100px; width : 100%;">
-			                    <%
-									for(String i : skills) {
-								%>
-								<option><%= i %></option>
-								<% } %>
-			                </select>
-                            
-                        </div>
+						Collections.sort(skills);
+					%>
+			  		<select name="skills" multiple style="height : 100px; width : 100%;">
+			    	<% for(String i : skills) { %>
+						<option><%= i %></option>
+					<% } %>
+			   		</select>
+ 				</div>
 
-    		            <div class="holderbox2">
-    		                    <input type="text" value="<%= emailID %>" name="emailID"  style="display : none">
-    		                    <input type="submit" value="Create" id="accept_but"/>
-    		            </div>   		            
-				  </form>
-    		                
-    		  </div>
-
-    	 </div>	
+    		    <div class="holderbox2">
+    		    	<input type="text" value="<%= session.getAttribute("emailID") %>" name="emailID"  style="display : none">
+    		   		<input type="submit" value="Create" id="accept_but"/>
+    			</div>   		            
+		</form>
+	</div>
+</div>	
 
 </body>
 </html>
