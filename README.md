@@ -8,7 +8,7 @@ The Job Providers can post jobs that require certain skills. The JOb Seeker can 
 
 It has a login and registration system. The main programming feature of this website is the job recommendation algorithm, which recommends jobs to users based the number of skills matched between the user and the job. 
 
-The frontend is done using HTML, CSS, and Bootstrap for some pages.
+The frontend is done using HTML, CSS, and Bootstrap for some pages. 
 The backend is done using MySQL for the database and Java (JSPs and Servlets) for all the coding.
 
 The database structure is as follows :
