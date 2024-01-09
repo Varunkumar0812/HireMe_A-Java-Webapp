@@ -1,4 +1,5 @@
-# HireMe_A-Java-Webapp
+# HireMe A Java Web Application
+
 A simple job portal developed using Java Web development tools like JSPs and Servlets. There are two types of users in this website :
 * Job Seekers
 * Job Providers
